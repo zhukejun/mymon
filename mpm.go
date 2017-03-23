@@ -113,7 +113,9 @@ func MysqlAlive(m *MysqlIns, ok bool) {
 	data := NewMetric("mysql_alive_local")
 	if ok {
 		data.SetValue(1)
-	}
+	} else {
+           data.SetValue(0)
+        }
 	msg, err := sendData([]*MetaData{data})
 	if err != nil {
 		log.Errorf("Send alive data failed: %v", err)
